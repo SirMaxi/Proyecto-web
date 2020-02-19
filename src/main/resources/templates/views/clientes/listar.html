@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="plantilla/template :: head">
+</head>
+<body>
+	<header th:replace="plantilla/template :: header"></header>
+
+	<div class="container">
+		<h1 th:text="${titulo}"></h1>
+	</div>
+
+	<div class="container">
+
+		<a class="btn btn-primary btn-sm" th:href="@{/views/clientes/crear}"
+			th:text="'Nuevo Cliente'" title="Crear Nuevo Cliente"> </a>
+
+		<table class="table">
+			<thead class="thead-dark">
+				<tr>
+					<th scope="col">Id</th>
+					<th scope="col">Usuarios</th>
+					<th scope="col">Emails</th>
+					<th scope="col">Nombres</th>
+					<th scope="col">Apellidos</th>
+					<th scope="col">Edades</th>
+					<th scope="col">Contraseñas</th>
+					<th scope="col">Editar</th>
+					<th scope="col">Eliminar</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="cl:${clientes}">
+					<th scope="row" th:text="${cl.id}"></th>
+					<td th:text="${cl.usuario}"></td>
+					<td th:text="${cl.email}"></td>
+					<td th:text="${cl.nombre}"></td>
+					<td th:text="${cl.apellido}"></td>
+					<td th:text="${cl.edad}"></td>
+					<td th:text="${cl.contrasena}"></td>
+					<td><a class="btn btn-success btn-sm"
+						th:href="@{/views/clientes/edit/} + ${cl.id}" th:text="'Editar'"
+						title="Editar Registro"> </a></td>
+					<td><a class="btn btn-danger btn-sm"
+						th:href="@{/views/clientes/delete/} + ${cl.id}"
+						th:text="'Eliminar'" title="Eliminar Registro"
+						onclick="return confirm('Eliminar registro?')"> </a></td>
+
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<footer th:replace="plantilla/template :: footer"></footer>
+</body>
+</html>
